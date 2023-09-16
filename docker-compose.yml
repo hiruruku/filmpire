@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  filmpire:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      # ホストのプロジェクトディレクトリとコンテナの/appディレクトリを同期
+      # :cachedはmacOSでFileioの向上用
+      - ./filmpire:/app:cached
+      # node_modulesボリュームを作成することで、コンテナからHostへの同期を防ぐ
+      - node_modules:/app/node_modules
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "5173:5173"
+    command: pnpm run dev
+    # ファイルシステムの変更を検知するための設定
+    stdin_open: true
+    tty: true
+
+volumes:
+  node_modules:
+
