@@ -1,13 +1,15 @@
-# 基本イメージの指定
 FROM node:18-alpine
 
 # コンテナ内の作業ディレクトリの設定
 WORKDIR /app
 
+
+RUN npm install -g pnpm
+
 # 環境変数の設定
 ENV LANG=C.UTF-8 \
-    TZ=Asia/Tokyo
-RUN npm install -g pnpm
+    TZ=Asia/Tokyo \
+    PNPM_STORE="/app/.pnpm-store/v3"
 
 # ファイルシステムの変更を監視するためのパッケージのインストール
 RUN apk add --no-cache make gcc g++ python3 && \
@@ -27,3 +29,6 @@ EXPOSE 5173
 
 # コンテナをnodeユーザとして実行 (セキュリティのためのベストプラクティス)
 USER node
+
+
+
