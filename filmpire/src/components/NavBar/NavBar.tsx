@@ -4,12 +4,16 @@ import { Link } from 'react-router-dom';
 import { useTheme, Theme } from '@mui/material/styles';
 import { css } from '@emotion/react';
 import { useState } from 'react';
+import { Sidebar } from '../exports';
 
 type NavCssReturnType = {
   toolbar: ReturnType<typeof css>;
   menuButton: ReturnType<typeof css>;
+  drawer: ReturnType<typeof css>;
+  drawerPaper: ReturnType<typeof css>;
+  linkButton: ReturnType<typeof css>;
 };
-
+const drawerWidth = 240;
 const getNavCss = (theme: Theme): NavCssReturnType => ({
   toolbar: css({
     height: '80px',
@@ -27,13 +31,29 @@ const getNavCss = (theme: Theme): NavCssReturnType => ({
       display: 'none',
     },
   }),
+  drawer: css({
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  }),
+  drawerPaper: css({
+    width: drawerWidth,
+  }),
+  linkButton: css({
+    '&:hover': {
+      color: 'white !important',
+      textDecoration: 'none',
+    },
+  }),
 });
 
 const NavBar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
   const navCss = getNavCss(theme);
   const isMobile = useMediaQuery('(max-width:600px)');
-  const [isAuthenticated, setAuthenticated] = useState(true);
+  const isAuthenticated = true;
 
   return (
     <>
@@ -44,7 +64,7 @@ const NavBar = () => {
               color="inherit"
               edge="start"
               style={{ outline: 'none' }}
-              onClick={() => {}}
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               css={navCss.menuButton}
             >
               <Menu />
@@ -85,6 +105,31 @@ const NavBar = () => {
           {isMobile && 'Search...'}
         </Toolbar>
       </AppBar>
+      <div>
+        <nav css={navCss.drawer}>
+          {isMobile ? (
+            <Drawer
+              variant="temporary"
+              anchor="right"
+              open={mobileOpen}
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
+              // classesで特定要素のstyleをoverride
+              classes={{ paper: navCss.drawerPaper.toString() }}
+              ModalProps={{ keepMounted: true }}
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
+          ) : (
+            <Drawer
+              classes={{ paper: navCss.drawerPaper.toString() }}
+              variant="permanent"
+              open
+            >
+              <Sidebar setMobileOpen={setMobileOpen} />
+            </Drawer>
+          )}
+        </nav>
+      </div>
     </>
   );
 };
