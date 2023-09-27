@@ -4,6 +4,8 @@ import Root from './routes/Root.tsx';
 import { Actors, MovieInformation, Movies, Profile } from './routes/exports.ts';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux';
+import store from "./store";
 
 const theme = createTheme({});
 
@@ -34,8 +36,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>,
 );
