@@ -1,18 +1,17 @@
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Grow, Rating, Tooltip } from '@mui/material';
 import { MovieType } from '../../api/types/tmdb';
 import { useTheme, Theme } from '@mui/material/styles';
 import { css } from '@emotion/react';
-
-type MovieProps = {
-  movie: MovieType;
-  i: number;
-};
+import { MovieLink } from '../exports';
 
 type MovieCssReturnType = {
+  movie: ReturnType<typeof css>;
   title: ReturnType<typeof css>;
 };
-
 const getMovieCss = (theme: Theme): MovieCssReturnType => ({
+  movie: css`
+    padding: 10px;
+  `,
   title: css`
     color: ${theme.palette.text.primary};
     text-overflow: ellipsis;
@@ -20,8 +19,14 @@ const getMovieCss = (theme: Theme): MovieCssReturnType => ({
     white-space: nowrap;
     overflow: hidden;
     margin-top: 10px;
+    text-align: center;
   `,
 });
+
+type MovieProps = {
+  movie: MovieType;
+  i: number;
+};
 
 const Movie: React.FC<MovieProps> = ({ movie, i }) => {
   console.log(movie, i);
@@ -36,13 +41,40 @@ const Movie: React.FC<MovieProps> = ({ movie, i }) => {
       md={4}
       lg={3}
       xl={2}
+      css={movieCss.movie}
     >
-      <Typography
-        css={movieCss.title}
-        variant="h5"
+      <Grow
+        in
+        key={i}
+        timeout={(i + 1) * 250}
       >
-        {movie.title}
-      </Typography>
+        <div>
+          <MovieLink
+            movieId={movie.id}
+            posterPath={movie.poster_path}
+            title={movie.title}
+          >
+            <Typography
+              css={movieCss.title}
+              variant="h5"
+            >
+              {movie.title}
+            </Typography>
+            <Tooltip
+              disableTouchListener
+              title={`${movie.vote_average} / 10`}
+            >
+              <div>
+                <Rating
+                  readOnly
+                  value={movie.vote_average / 2}
+                  precision={0.1}
+                />
+              </div>
+            </Tooltip>
+          </MovieLink>
+        </div>
+      </Grow>
     </Grid>
   );
 };

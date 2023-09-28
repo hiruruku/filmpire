@@ -4,8 +4,10 @@ import { Box, CircularProgress, Typography } from '@mui/material';
 import { useGetMoviesQuery } from '../../api/tmdb';
 import { MovieList } from '../../components/exports';
 
+type UseGetMoviesQueryReturnType = ReturnType<typeof useGetMoviesQuery>;
+
 const Movies = () => {
-  const { data, isLoading, isError } = useGetMoviesQuery();
+  const { data, isLoading, isError }: UseGetMoviesQueryReturnType = useGetMoviesQuery();
 
   // データのロード中の場合
   if (isLoading) {

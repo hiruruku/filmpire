@@ -16,7 +16,7 @@ const getMovieListCss = (theme: Theme): MovieListCssReturnType => ({
   movieContainer: css`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     overflow: auto;
     ${theme.breakpoints.down('sm')} {
       justify-content: center;
@@ -31,7 +31,6 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   return (
     <Grid
       container
-      spacing={1}
       css={movieListCss.movieContainer}
     >
       {movies.results.map((movie, i) => (
