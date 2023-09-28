@@ -9,13 +9,13 @@ type SideMenuCssReturnType = {
 };
 
 const getSideMenuCss = (theme: Theme): SideMenuCssReturnType => ({
-  links: css({
-    color: theme.palette.text.primary,
-    textDecoration: 'none',
-  }),
-  genreImage: css({
-    filter: theme.palette.mode === 'dark' ? 'dark' : 'invert(1)',
-  }),
+  links: css`
+    color: ${theme.palette.text.primary};
+    text-decoration: none;
+  `,
+  genreImage: css`
+    filter: ${theme.palette.mode === 'dark' ? 'dark' : 'invert(1)'};
+  `,
 });
 
 type SideBarMenuList = {

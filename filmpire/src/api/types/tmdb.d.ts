@@ -1,4 +1,4 @@
-export type Movie = {
+export type MovieType = {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -18,4 +18,6 @@ export type Movie = {
 export type APIResponse<T> = {
   page: number;
   results: T[];
+  total_pages: number;
+  total_results: number;
 };

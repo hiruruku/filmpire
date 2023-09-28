@@ -15,37 +15,37 @@ type NavCssReturnType = {
 };
 const drawerWidth = 240;
 const getNavCss = (theme: Theme): NavCssReturnType => ({
-  toolbar: css({
-    height: '80px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginLeft: '240px',
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: 0,
-      flexWrap: 'wrap',
-    },
-  }),
-  menuButton: css({
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
-  }),
-  drawer: css({
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-  }),
-  drawerPaper: css({
-    width: drawerWidth,
-  }),
-  linkButton: css({
-    '&:hover': {
-      color: 'white !important',
-      textDecoration: 'none',
-    },
-  }),
+  toolbar: css`
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 240px;
+    ${theme.breakpoints.down('sm')} {
+      margin-left: 0;
+      flex-wrap: wrap;
+    }
+  `,
+  menuButton: css`
+    margin-right: ${theme.spacing(2)};
+    ${theme.breakpoints.up('sm')} {
+      display: none;
+    }
+  `,
+  drawer: css`
+    ${theme.breakpoints.up('sm')} {
+      width: ${drawerWidth};
+      flex-shrink: 0;
+    }
+  `,
+  drawerPaper: css`
+    width: ${drawerWidth};
+  `,
+  linkButton: css`
+    &:hover {
+      color: white !important;
+      text-decoration: none;
+    }
+  `,
 });
 
 const NavBar = () => {

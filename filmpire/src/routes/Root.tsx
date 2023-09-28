@@ -4,17 +4,17 @@ import NavBar from '../components/NavBar/NavBar';
 import { css } from '@emotion/react';
 
 const rootCss = {
-  root: css({
-    display: 'flex',
-    height: '100%',
-  }),
-  toolbar: {
-    height: '70px',
-  },
-  content: {
-    flexGrow: '1',
-    padding: '2em',
-  },
+  root: css`
+    display: flex;
+    height: 100%;
+  `,
+  toolbar: css`
+    height: 70px;
+  `,
+  content: css`
+    flex-grow: 1;
+    padding: 2em;
+  `,
 };
 
 const Root = () => {
