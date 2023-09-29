@@ -64,7 +64,7 @@ const Movie: React.FC<MovieProps> = ({ movie, i }) => {
               disableTouchListener
               title={`${movie.vote_average} / 10`}
             >
-              <div>
+              <div role="rating-container">
                 <Rating
                   readOnly
                   value={movie.vote_average / 2}
