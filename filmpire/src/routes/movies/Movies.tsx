@@ -8,7 +8,10 @@ type UseGetMoviesQueryReturnType = ReturnType<typeof useGetMoviesQuery>;
 
 const Movies = () => {
   const { data, isLoading, isError }: UseGetMoviesQueryReturnType = useGetMoviesQuery();
-
+  // エラー発生時の場合
+  if (isError) {
+    return <div>Failed to load movies.</div>;
+  }
   // データのロード中の場合
   if (isLoading) {
     return (
@@ -34,10 +37,6 @@ const Movies = () => {
         </Typography>
       </Box>
     );
-  }
-  // エラー発生時の場合
-  if (isError) {
-    return <div>Failed to load movies.</div>;
   }
 
   return <MovieList movies={data} />;

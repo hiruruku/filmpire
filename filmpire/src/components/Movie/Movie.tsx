@@ -42,6 +42,7 @@ const Movie: React.FC<MovieProps> = ({ movie, i }) => {
       lg={3}
       xl={2}
       css={movieCss.movie}
+      role="movie-grid"
     >
       <Grow
         in
