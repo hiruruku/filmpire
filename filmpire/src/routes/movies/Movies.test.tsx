@@ -44,17 +44,16 @@ describe('Movies コンポーネント', () => {
   test('エラー発生時、エラーメッセージを表示する', async () => {
     // エラーレスポンスをモックする
     server.use(
-      rest.get(`${apiURL}/movie/popular`, (req, res, ctx) => {
+      rest.get(`${apiURL}movie/popular`, (req, res, ctx) => {
+        console.log(`${apiURL}/movie/popular`);
         return res(ctx.status(500));
       }),
     );
 
     render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <Movies />
-        </Provider>
-      </MemoryRouter>,
+      <Provider store={store}>
+        <Movies />
+      </Provider>,
     );
 
     // findByTextを使用して非同期的にエラーメッセージが表示されるのを待つ

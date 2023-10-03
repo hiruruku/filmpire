@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const TMDB_TOKEN = import.meta.env.VITE_TMDB_TOKEN;
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
-import { MovieType, APIResponse, Genre, GenresResponse } from './types/tmdb';
+import { MovieType, APIResponse, GenresResponse } from './types/tmdb';
 
 // api
 export const tmdbApi = createApi({
@@ -17,7 +17,7 @@ export const tmdbApi = createApi({
   }),
   endpoints: (builder) => ({
     getGenres: builder.query<GenresResponse, void>({
-      query: () => `genre/movie/list?language=ja`,
+      query: () => `genre/movie/list?language=en`,
     }),
     // Movies by [Type]
     getMovies: builder.query<APIResponse<MovieType>, number | void>({

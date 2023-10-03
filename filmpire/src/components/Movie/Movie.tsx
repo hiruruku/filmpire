@@ -29,7 +29,6 @@ type MovieProps = {
 };
 
 const Movie: React.FC<MovieProps> = ({ movie, i }) => {
-  console.log(movie, i);
   const theme = useTheme();
   const movieCss = getMovieCss(theme);
 

@@ -5,10 +5,13 @@ import { describe, beforeEach, test, expect } from 'vitest';
 import '@testing-library/jest-dom';
 
 describe('サイドバーメニューの動作確認', () => {
-  const mockData = [
-    { label: 'Test1', value: 'test1' },
-    { label: 'Test2', value: 'test2' },
-  ];
+  const mockData = {
+    genres: [
+      { id: 101, name: 'popular' },
+      { id: 102, name: 'top rated' },
+      { id: 103, name: 'upcoming' },
+    ],
+  };
   beforeEach(() => {
     render(
       <Router>
@@ -18,13 +21,13 @@ describe('サイドバーメニューの動作確認', () => {
   });
   test('displayArrayを表示する', () => {
     test('renders each item from displayArray prop', () => {
-      mockData.forEach((item) => {
-        const element = screen.getByText(item.label);
+      mockData.genres.forEach((item) => {
+        const element = screen.getByText(item.name);
         expect(element).toBeInTheDocument();
       });
     });
     test('renders correct link for each item', () => {
-      const linkElements = screen.getAllByRole('link', { name: /Test/ });
+      const linkElements = screen.getAllByRole('link', { name: 'popular' });
       linkElements.forEach((link) => {
         expect(link).toHaveAttribute('href', '/');
       });
