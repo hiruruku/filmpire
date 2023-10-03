@@ -2,6 +2,7 @@ import { ListItemButton, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { useTheme, Theme } from '@mui/material/styles';
+import { GenresResponse } from '../../api/types/tmdb';
 
 type SideMenuCssReturnType = {
   links: ReturnType<typeof css>;
@@ -19,7 +20,7 @@ const getSideMenuCss = (theme: Theme): SideMenuCssReturnType => ({
 });
 
 type SideBarMenuList = {
-  displayArray: { label: string; value: string }[];
+  displayArray: GenresResponse;
 };
 
 const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
@@ -27,9 +28,9 @@ const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
   const sideMenuCss = getSideMenuCss(theme);
   return (
     <>
-      {displayArray.map(({ label, value }) => (
+      {displayArray.genres.map(({ name }) => (
         <Link
-          key={value}
+          key={name}
           css={sideMenuCss.links}
           to="/"
         >
@@ -41,7 +42,7 @@ const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
                 height={30}
               />
             </ListItemIcon> */}
-            <ListItemText primary={label} />
+            <ListItemText primary={name} />
           </ListItemButton>
         </Link>
       ))}

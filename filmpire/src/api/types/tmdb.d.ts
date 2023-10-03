@@ -21,3 +21,12 @@ export type APIResponse<T> = {
   total_pages: number;
   total_results: number;
 };
+
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type GenresResponse = {
+  genres: Genre[];
+};
