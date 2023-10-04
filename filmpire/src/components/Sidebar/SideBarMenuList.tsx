@@ -2,11 +2,13 @@ import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { useTheme, Theme } from '@mui/material/styles';
+import { RootState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { GenresResponse } from '../../api/types/tmdb';
 import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../store/modules/currentGenreOrCategory';
+import React from 'react';
 
 type SideMenuCssReturnType = {
   links: ReturnType<typeof css>;
@@ -28,10 +30,14 @@ type SideBarMenuList = {
 };
 
 const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
+  const { genreIdOrCategoryName } = useSelector((state: RootState) => state.currentGenreOrCategory);
+
   const theme = useTheme();
   const sideMenuCss = getSideMenuCss(theme);
   const dispatch = useDispatch();
   const isCategory = displayArray.category ?? false;
+
+  console.log(genreIdOrCategoryName);
   return (
     <>
       {displayArray.genres.map(({ id, name }) => (
@@ -59,5 +65,5 @@ const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
     </>
   );
 };
-
-export default SideBarMenuList;
+// 最適化の検討
+export default React.memo(SideBarMenuList);

@@ -5,7 +5,7 @@ import { Actors, MovieInformation, Movies, Profile } from './routes/exports.ts';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
-import store from "./store";
+import store from './store';
 
 const theme = createTheme({});
 

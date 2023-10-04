@@ -20,7 +20,7 @@ const sideBarCss = {
 const categories = {
   genres: [
     { id: 101, name: 'popular' },
-    { id: 102, name: 'top rated' },
+    { id: 102, name: 'top_rated' },
     { id: 103, name: 'upcoming' },
   ],
   category: true,

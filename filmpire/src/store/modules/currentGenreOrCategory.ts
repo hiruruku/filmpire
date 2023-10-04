@@ -1,16 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { Slice, createSlice } from '@reduxjs/toolkit';
 
-export const genreOrCategory = createSlice({
+type GenreOrCategoryStateType = {
+  genreIdOrCategoryName: number | string;
+  page: number;
+  searchQuery: string;
+};
+
+export const genreOrCategory: Slice<GenreOrCategoryStateType> = createSlice({
   name: 'genreOrCategory',
   initialState: {
-    genreOrCategoryName: '',
+    genreIdOrCategoryName: '',
     page: 1,
     searchQuery: '',
-  },
+  } as GenreOrCategoryStateType,
   reducers: {
     selectGenreOrCategory: (state, action) => {
-      console.log(action.payload);
-      // state.genreOrCategoryName =
+      // Redux Toolkit uses Immer internally,
+      // allowing state objects to be immutably updated using proxies.
+      state.genreIdOrCategoryName = action.payload;
     },
   },
 });

@@ -48,7 +48,7 @@ const images: ImageMap = {
   western,
 
   popular,
-  'top rated': topRated,
+  top_rated: topRated,
   upcoming,
 };
 

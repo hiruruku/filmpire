@@ -20,8 +20,20 @@ export const tmdbApi = createApi({
       query: () => `genre/movie/list?language=en`,
     }),
     // Movies by [Type]
-    getMovies: builder.query<APIResponse<MovieType>, number | void>({
-      query: (page = 1) => `movie/popular?page=${page}`,
+    getMovies: builder.query<APIResponse<MovieType>, any>({
+      query: ({ genreIdOrCategoryName, page }) => {
+        // Get Movies by Category
+        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
+          return `movie/${genreIdOrCategoryName}?page=${page}`;
+        }
+        // Get Movies by Genre
+        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
+          console.log('here');
+          return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}`;
+        }
+        // Get Popular Movie>Start時、MenuListが押されていない時
+        return `movie/popular?page${page}`;
+      },
     }),
   }),
 });

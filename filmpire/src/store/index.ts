@@ -18,12 +18,6 @@ export const initializeStore = (): StoreType => {
 };
 
 const store = initializeStore();
+// app全体でRootStateを使用して、Redexのstateの型を参照できる
+export type RootState = ReturnType<typeof store.getState>;
 export default store;
-
-// export default configureStore({
-//     reducer: {
-//     [tmdbApi.reducerPath]: tmdbApi.reducer,
-//     },
-//     middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware().concat(tmdbApi.middleware),
-// });
