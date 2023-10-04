@@ -29,4 +29,5 @@ type Genre = {
 
 type GenresResponse = {
   genres: Genre[];
+  category?: boolean;
 };

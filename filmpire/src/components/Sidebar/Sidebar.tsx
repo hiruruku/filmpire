@@ -23,6 +23,7 @@ const categories = {
     { id: 102, name: 'top rated' },
     { id: 103, name: 'upcoming' },
   ],
+  category: true,
 };
 
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';

@@ -3,6 +3,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import SideBarMenuList from './SideBarMenuList';
 import { describe, beforeEach, test, expect } from 'vitest';
 import '@testing-library/jest-dom';
+import { Provider } from 'react-redux';
+import store from '../../store';
 
 describe('サイドバーメニューの動作確認', () => {
   const mockData = {
@@ -14,9 +16,11 @@ describe('サイドバーメニューの動作確認', () => {
   };
   beforeEach(() => {
     render(
-      <Router>
-        <SideBarMenuList displayArray={mockData} />
-      </Router>,
+      <Provider store={store}>
+        <Router>
+          <SideBarMenuList displayArray={mockData} />
+        </Router>
+      </Provider>,
     );
   });
   test('displayArrayを表示する', () => {
