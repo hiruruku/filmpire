@@ -15,9 +15,12 @@ export const tmdbApi = createApi({
       return headers;
     },
   }),
+  refetchOnReconnect: false,
+  refetchOnFocus: false,
   endpoints: (builder) => ({
     getGenres: builder.query<GenresResponse, void>({
       query: () => `genre/movie/list?language=en`,
+      keepUnusedDataFor: 60 * 60 * 24,
     }),
     // Movies by [Type]
     getMovies: builder.query<APIResponse<MovieType>, any>({

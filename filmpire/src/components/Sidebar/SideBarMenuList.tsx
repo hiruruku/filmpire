@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GenresResponse } from '../../api/types/tmdb';
 import genreIcons from '../../assets/genres';
 import { selectGenreOrCategory } from '../../store/modules/currentGenreOrCategory';
-import React from 'react';
+import { memo } from 'react';
 
 type SideMenuCssReturnType = {
   links: ReturnType<typeof css>;
@@ -29,7 +29,7 @@ type SideBarMenuList = {
   displayArray: GenresResponse;
 };
 
-const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
+const SideBarMenuList: React.FC<SideBarMenuList> = memo(({ displayArray }) => {
   const { genreIdOrCategoryName } = useSelector((state: RootState) => state.currentGenreOrCategory);
 
   const theme = useTheme();
@@ -38,6 +38,7 @@ const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
   const isCategory = displayArray.category ?? false;
 
   console.log(genreIdOrCategoryName);
+  console.log('data', displayArray);
   return (
     <>
       {displayArray.genres.map(({ id, name }) => (
@@ -64,6 +65,5 @@ const SideBarMenuList: React.FC<SideBarMenuList> = ({ displayArray }) => {
       ))}
     </>
   );
-};
-// 最適化の検討
-export default React.memo(SideBarMenuList);
+});
+export default SideBarMenuList;

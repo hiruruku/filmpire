@@ -3,7 +3,7 @@ import { Menu, AccountCircle, Brightness4, Brightness7 } from '@mui/icons-materi
 import { Link } from 'react-router-dom';
 import { useTheme, Theme } from '@mui/material/styles';
 import { css } from '@emotion/react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Sidebar } from '../exports';
 
 type NavCssReturnType = {
@@ -54,6 +54,9 @@ const NavBar = () => {
   const navCss = getNavCss(theme);
   const isMobile = useMediaQuery('(max-width:600px)');
   const isAuthenticated = true;
+  const handleSetMobileOpen = useCallback(() => {
+    setMobileOpen((prevMobileOpen) => !prevMobileOpen);
+  }, []);
 
   return (
     <>
@@ -117,7 +120,7 @@ const NavBar = () => {
               classes={{ paper: navCss.drawerPaper.toString() }}
               ModalProps={{ keepMounted: true }}
             >
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar setMobileOpen={handleSetMobileOpen} />
             </Drawer>
           ) : (
             <Drawer
@@ -125,7 +128,7 @@ const NavBar = () => {
               variant="permanent"
               open
             >
-              <Sidebar setMobileOpen={setMobileOpen} />
+              <Sidebar setMobileOpen={handleSetMobileOpen} />
             </Drawer>
           )}
         </nav>

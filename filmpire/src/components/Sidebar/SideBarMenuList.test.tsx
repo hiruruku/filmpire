@@ -10,7 +10,7 @@ describe('サイドバーメニューの動作確認', () => {
   const mockData = {
     genres: [
       { id: 101, name: 'popular' },
-      { id: 102, name: 'top rated' },
+      { id: 102, name: 'top_rated' },
       { id: 103, name: 'upcoming' },
     ],
   };
