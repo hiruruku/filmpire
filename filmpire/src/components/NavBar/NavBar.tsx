@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTheme, Theme } from '@mui/material/styles';
 import { css } from '@emotion/react';
 import { useCallback, useState } from 'react';
-import { Sidebar } from '../exports';
+import { Sidebar, Search } from '../exports';
 
 type NavCssReturnType = {
   toolbar: ReturnType<typeof css>;
@@ -80,6 +80,7 @@ const NavBar = () => {
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
+          {!isMobile && <Search />}
           <div>
             {!isAuthenticated ? (
               <Button
@@ -105,7 +106,7 @@ const NavBar = () => {
               </Button>
             )}
           </div>
-          {isMobile && 'Search...'}
+          {isMobile && <Search />}
         </Toolbar>
       </AppBar>
       <div>

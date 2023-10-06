@@ -10,8 +10,8 @@ type UseGetMoviesQueryReturnType = ReturnType<typeof useGetMoviesQuery>;
 
 const Movies = () => {
   const [page, setPage] = useState(1);
-  const { genreIdOrCategoryName } = useSelector((state: RootState) => state.currentGenreOrCategory);
-  const { data, isLoading, isError }: UseGetMoviesQueryReturnType = useGetMoviesQuery({ genreIdOrCategoryName, page });
+  const { genreIdOrCategoryName, searchQuery } = useSelector((state: RootState) => state.currentGenreOrCategory);
+  const { data, isLoading, isError }: UseGetMoviesQueryReturnType = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
   // エラー発生時の場合
   if (isError) {
     return <div>Failed to load movies.</div>;
