@@ -11,10 +11,10 @@ type GenreOrCategoryStateType = {
  メイン画面では、useSelectorでこのStateを取得しており値が変更されると、RTKQueryが動いて、新しくAPIに情報を取得しに行く。
  storeでは、reducersごとにstateを保持する。
  このアプリでは、あくまで内部の変更処理。
- このreducersが保持するState
- 　　　１: genre番号 number か　Category名 string
+ このSliceが保持するState
+ 　１: genre番号 number か　Category名 string
    2: page => pagenation用
-   3: searchQuery => 検索文字列
+   3: searchQuery => 検索文字列(この文字列は、Searchコンポーネントから、searchMovieがDispatchされる)
 */
 export const genreOrCategory: Slice<GenreOrCategoryStateType> = createSlice({
   name: 'genreOrCategory',

@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme, Theme } from '@mui/material/styles';
 import { css } from '@emotion/react';
+import DefaultImage from '../../assets/images/noimage.svg';
 
 type MovieLinkCssReturnType = {
   links: ReturnType<typeof css>;
@@ -42,7 +43,7 @@ type MovieLinkProps = {
 const MovieLink: React.FC<MovieLinkProps> = ({ movieId, posterPath, title, children }) => {
   const theme = useTheme();
   const movieLinkCss = getMovieLinkCss(theme);
-  const imageUrl = posterPath ? `${import.meta.env.VITE_TMDB_IMAGE_URL}${posterPath}` : import.meta.env.VITE_DEFAULT_IMAGE_URL;
+  const imageUrl = posterPath ? `${import.meta.env.VITE_TMDB_IMAGE_URL}${posterPath}` : DefaultImage;
 
   return (
     <Link
