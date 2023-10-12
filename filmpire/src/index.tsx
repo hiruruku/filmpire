@@ -29,6 +29,9 @@ const router = createBrowserRouter([
         path: '/profile/:id',
         element: <Profile />,
       },
+      {
+        path: '/approved',
+      },
     ],
   },
 ]);

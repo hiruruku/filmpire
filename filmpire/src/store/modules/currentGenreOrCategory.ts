@@ -35,7 +35,7 @@ export const genreOrCategory: Slice<GenreOrCategoryStateType> = createSlice({
     },
   },
 });
-// actionをexportする場合.actionsから
+// action creatorをexportする場合.actionsから
 export const { selectGenreOrCategory, searchMovie } = genreOrCategory.actions;
-
+// createSliceによって自動生成されるGlobalなStateを保持しており、storeに登録する
 export default genreOrCategory.reducer;

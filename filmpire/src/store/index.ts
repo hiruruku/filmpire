@@ -1,10 +1,12 @@
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 import { tmdbApi } from '../api/tmdb';
 import genreOrCategoryReducer from './modules/currentGenreOrCategory';
+import userReducer from '../store/modules/auth';
 
 export type StoreType = EnhancedStore<{
   [tmdbApi.reducerPath]: ReturnType<typeof tmdbApi.reducer>;
   currentGenreOrCategory: ReturnType<typeof genreOrCategoryReducer>;
+  user: ReturnType<typeof userReducer>;
 }>;
 
 export const initializeStore = (): StoreType => {
@@ -12,6 +14,7 @@ export const initializeStore = (): StoreType => {
     reducer: {
       [tmdbApi.reducerPath]: tmdbApi.reducer,
       currentGenreOrCategory: genreOrCategoryReducer,
+      user: userReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(tmdbApi.middleware),
   });

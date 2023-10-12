@@ -65,6 +65,6 @@ const SideBarMenuList: React.FC<SideBarMenuList> = memo(({ displayArray }) => {
       ))}
     </>
   );
-};
+});
 // 最適化の検討
 export default memo(SideBarMenuList);
