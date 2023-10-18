@@ -27,7 +27,7 @@ export const tmdbApi = createApi({
       query: ({ genreIdOrCategoryName, page, searchQuery }) => {
         // Get Movies by Search
         if (searchQuery) {
-          return `/search/movie?query=${searchQuery}&page=${page}`;
+          return `search/movie?query=${searchQuery}&page=${page}`;
         }
         // Get Movies by Category
         if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
@@ -35,13 +35,17 @@ export const tmdbApi = createApi({
         }
         // Get Movies by Genre
         if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
-          console.log('here');
           return `discover/movie?with_genres=${genreIdOrCategoryName}&page=${page}`;
         }
         // Get Popular Movie>Start時、MenuListが押されていない時
         return `movie/popular?page${page}`;
       },
     }),
+    getMovie: builder.query({
+      // tmdbAPIはmovie/:movieIdで映画の詳細、movie/:movieId/videosで映画のビデオ取得する
+      // 詳細に加え、videos,creditを同時に欲しい場合、append_to_responseでResponseに追加される
+      query: (id) => `movie/${id}?append_to_response=videos,credits`
+    })
   }),
 });
-export const { useGetGenresQuery, useGetMoviesQuery } = tmdbApi;
+export const { useGetGenresQuery, useGetMoviesQuery,useGetMovieQuery} = tmdbApi;

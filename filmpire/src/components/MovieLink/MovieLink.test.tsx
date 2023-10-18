@@ -6,7 +6,7 @@ import MovieLink from './MovieLink'; // 適切なパスに変更してくださ�
 
 describe('MovieLinkコンポーネント単体テスト', () => {
   const mockMovieId = 1;
-  const mockPosterPath = '/test.jpg';
+  const mockPosterPath = 'test.jpg';
   const mockTitle = 'Test Movie';
 
   test('MovieLinkコンポーネントが正しくレンダリングされる', () => {
@@ -48,6 +48,6 @@ describe('MovieLinkコンポーネント単体テスト', () => {
     );
 
     const imageElement = screen.getByRole('img', { name: mockTitle });
-    expect(imageElement).toHaveAttribute('src', import.meta.env.VITE_DEFAULT_IMAGE_URL);
+    expect(imageElement).toHaveAttribute('src', import.meta.env.VITE_DEFAULT_IMAGE_FULL_PATH);
   });
 });

@@ -4,10 +4,10 @@ import { css } from '@emotion/react';
 import { useTheme, Theme } from '@mui/material/styles';
 import { RootState } from '../../store';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectGenreOrCategory } from '../../store/modules/currentGenreOrCategory';
 
 import { GenresResponse } from '../../api/types/tmdb';
 import genreIcons from '../../assets/genres';
-import { selectGenreOrCategory } from '../../store/modules/currentGenreOrCategory';
 import { memo } from 'react';
 
 type SideMenuCssReturnType = {

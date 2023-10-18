@@ -150,7 +150,7 @@ const NavBar = () => {
               anchor="right"
               open={mobileOpen}
               onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
-              // classesで特定要素のstyleをoverride
+              // classesでDrawerの特定要素(この場合paper)のstyleをoverride
               classes={{ paper: navCss.drawerPaper.toString() }}
               ModalProps={{ keepMounted: true }}
             >

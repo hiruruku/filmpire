@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { selectGenreOrCategory } from '../../store/modules/currentGenreOrCategory';
 import { useGetMoviesQuery } from '../../api/tmdb';
-import { MovieList } from '../../components/exports';
+import { LoadingComponent, MovieList } from '../../components/exports';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
@@ -19,12 +19,7 @@ const Movies = () => {
   // データのロード中の場合
   if (isLoading) {
     return (
-      <Box
-        display="flex"
-        justifyContent="center"
-      >
-        <CircularProgress size="4rem" />
-      </Box>
+      <LoadingComponent size="4rem" />
     );
   }
   if (!data?.results.length) {
